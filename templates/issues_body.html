@@ -1,0 +1,17 @@
+<tr  data-link="/issues/{{ issue.id }}">
+    <td><a href="/issue/{{ issue.id }}">{{ issue.id }}</a></td>
+    <td>
+        <a href="/issues/{{ issue.username }}">{{ issue.username }}</a>
+        <a class="btn btn-success pull-right btn-xs" href="#" target="_blank">sign-in</a>
+    </td>
+    <td>{{ issue.body | nl2br }}</td>
+    <td>
+        {% if  issue.closed %}
+            <i class="fa fa-check" style="color: green" aria-hidden="true"></i>
+        {% else %}
+            <i class="fa fa-times" style="color: red" aria-hidden="true"></i>
+        {% endif %}
+    </td>
+    <td>{{ issue.date }}</td>
+    <td>{{ issue.updated }}</td>
+</tr>

@@ -1,0 +1,25 @@
+<button type="button" class="btn btn-primary" id="modal-btn" data-toggle="modal" data-target=".bs-example-modal-lg" style="position: fixed; bottom: 10px; right: 10px;">Add comment</button>
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <!-- Modal Content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Create comment</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="input-group">
+                    <form id="form_to_send" action=""></form>
+                  <textarea style="resize: none" rows="10" cols="100" id="issue-input" class="form-control" id="issue" placeholder="Issue"></textarea>
+                </div>
+            </div>
+            <span id="input-error" style="display: none; color: red"> Fill all fields </span>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                <button id="create-comment" type="button" class="btn btn-primary">Create comment</button>
+            </div>
+        </div>
+    </div>
+</div>

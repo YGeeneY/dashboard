@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+<table class="table table-hover table-bordered">
+    <thead>
+        <td><strong>User name</strong></td>
+        <td><strong>Amount of call for 2 weeks</strong></td>
+        <td><strong>Amount of call for 1 day</strong></td>
+        <td><strong>Duration for 1 day</strong></td>
+    </thead>
+
+    {% for vip in vips %}
+    <tr>
+        <td>
+            {{ vip.name }}
+            <a class="btn btn-success pull-right btn-xs" href="#" target="_blank">sign-in</a>
+
+            {% if vip.cnt %}
+            <a class="btn btn-primary pull-right btn-xs" href="/issues/{{ vip.name }}">issues
+
+                    <span class="badge">{{ vip.cnt }}</span>
+            </a>
+            {% endif %}
+        </td>
+        <td>{{ vip.calls_long_last }}</td>
+        <td>{{ vip.calls_last }}</td>
+        <td>{{ vip.duration_last }}</td>
+    </tr>
+    {% endfor %}
+
+    <tr>
+        <td><strong>TOTAL</strong></td>
+        <td><strong></strong></td>
+        <td><strong></strong></td>
+        <td><strong>{{ vips|length }}</strong></td>
+    </tr>
+</table>
+{% endblock %}

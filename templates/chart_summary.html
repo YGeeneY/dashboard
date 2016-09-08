@@ -1,0 +1,82 @@
+
+<div id="container" style="min-width: 80%; height: 400px;"></div>
+<div id="acd-asr" style="min-width: 80%; height: 400px;"></div>
+    <script>
+$(function () {
+    $.getJSON('/api/history?q={{ client }}', function (data) {
+
+{#        for (var i=0; i<data['asr'].length;i++){#}
+{#            data['asr'][i][0] = new Date(data['asr'][i][0]).getTime()#}
+{#        }#}
+        $('#container').highcharts({
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Calls / Duration chart on {{ client }}'
+            },
+            subtitle: {
+                text: document.ontouchstart === undefined ?
+                        'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+            series: [
+                {
+                type: 'area',
+                name: 'calls',
+                tooltip: {
+                  valueSuffix: ' Calls'
+                },
+                data: data['c_last']
+                },{
+                type: 'area',
+                name: 'duration',
+                tooltip: {
+                  valueSuffix: ' seconds'
+                },
+                data: data['d_last']
+                }
+            ]
+        });
+
+        $('#acd-asr').highcharts({
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: 'ACD / ASR chart on {{ client }}'
+            },
+            subtitle: {
+                text: document.ontouchstart === undefined ?
+                        'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+
+
+            series: [
+                {
+                type: 'area',
+                name: 'asr',
+                color: 'green',
+                tooltip: {
+                  valueSuffix: ' %.'
+                },
+                data: data['asr']
+                },{
+                type: 'area',
+                name: 'acd',
+                color: 'red',
+                tooltip: {
+                  valueSuffix: ' min.'
+                },
+                data: data['acd']
+                }
+            ]
+        })
+    });
+});
+    </script>

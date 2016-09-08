@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}
+    Issue#{{ issue.id }} {{ issue.username }}
+{% endblock %}
+
+{% block body %}
+
+<div class="jumbotron">
+    <h1><strong>{{ issue.username }}</strong></h1>
+    <p> Issue: <br>
+        {{ issue.body|nl2br}}</p>
+    <span class="pull-right muted">created: {{ issue.date }}</span> <br>
+    {% if issue.updated  %}
+        <span class="pull-right muted">last updated: {{ issue.updated }}</span>
+    {% endif %}
+</div>
+
+{% endblock %}
+{% include 'modal_issue.html' %}
+{% block modal %}
+
+{% if comments | length %}
+<ul class="media-list">
+    {% for comment in comments %}
+    <li class="media">
+        <div class="media-left">
+            {% if comment.author == 'sales' %}
+                <img class="media-object" src="https://cdn2.iconfinder.com/data/icons/business-set-7/100/20-128.png">
+            {% elif comment.author == 'it' %}
+                <img class="media-object" src="https://cdn1.iconfinder.com/data/icons/business-264/100/25-128.png">
+            {% else %}
+                <img class="media-object" src="https://cdn3.iconfinder.com/data/icons/mask/154/classic-carnaval-mask-incognito-128.png">
+            {% endif %}
+        </div>
+        <div class="media-body">
+            <pre>{{ comment.body }}</pre>
+            <br>     <span class="pull-right muted">created: {{ comment.date }}</span> <br>
+        </div>
+    </li>
+    <hr>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<script>
+    var comment = $('#issue-input'),
+        $inputError = $('#input-error'),
+        btn = $('#create-comment'),
+        $form = $('#form_to_send');
+
+    btn.on('click', function(){
+        if(comment.val()){
+            $.form(
+                    '',
+                    {
+                        comment: comment.val(),
+                        issue_id: '{{ issue.id  }}'
+                    },
+                    'POST').submit();
+        } else {
+            $inputError.show()
+        }
+    })
+
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Issues
+{% endblock %}
+
+{% block body %}
+
+<!-- Navigation -->
+<div>
+<!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#active" aria-controls="active" role="tab" data-toggle="tab">Active</a></li>
+        <li role="presentation"><a href="#inactive" aria-controls="inactive" role="tab" data-toggle="tab">Closed</a></li>
+        <li role="presentation"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">All</a></li>
+        {% block navtabs %}
+
+        {% endblock %}
+    </ul>
+<!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="active">
+            <table class="table table-hover table-bordered">
+                {% include 'issues_thead.html' %}
+                {% for issue in issues if not issue.closed %}
+                    {% include 'issues_body.html' %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="inactive">
+            <table class="table table-hover table-bordered">
+                {% include 'issues_thead.html' %}
+                {% for issue in issues if issue.closed %}
+                    {% include 'issues_body.html' %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="all">
+            <table class="table table-hover table-bordered">
+                {% include 'issues_thead.html' %}
+                {% for issue in issues %}
+                    {% include 'issues_body.html' %}
+                {% endfor %}
+            </table>
+        </div>
+    {% block tabpannel %}
+
+    {% endblock %}
+    </div>
+<div id="asuccess" class="alert alert-success" style="display: none" role="alert">Task created. Refresh the page. <span class="alert-btn pull-right" aria-hidden="true" style="cursor: pointer">&times;</span>   </div>
+<div id="aerror" class="alert alert-warning" style="display: none" role="alert">Somth. went wrong<span class="alert-btn pull-right" aria-hidden="true" style="cursor: pointer">&times;</span>   </div>
+
+
+</div>
+
+{% endblock %}

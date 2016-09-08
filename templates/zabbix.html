@@ -1,0 +1,28 @@
+<div id="zabbix-frame" style="position: fixed; left: -550px; top: 0px">
+    <button id="zbx-btn" class="btn btn-primary" style="float: right">Zabbix</button>
+    <iframe id="zabbix" src="#" width="550px"></iframe>
+</div>
+    <script>
+    function zabbixResize(){
+        var $iframe = $($('iframe')[0]),
+            $height = $(document).height() - 20;
+        $iframe.attr('height', ($height) + 'px')
+    }
+    zabbixResize();
+    $(window).on('resize', zabbixResize);
+    var zbxBtn = $('#zbx-btn'),
+        zbxFrame = $('#zabbix-frame');
+    var hidden = true;
+    zbxBtn.on('click', function () {
+        if (hidden){
+            zbxFrame.css({left: '0px'});
+            hidden = false;
+            console.log('open')
+        } else {
+            zbxFrame.css({left: '-550px'});
+            hidden = true;
+            console.log('hide')
+
+        }
+    })
+</script>
