@@ -26,7 +26,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- Name: client_insert_safe(character varying); Type: FUNCTION; Schema: public; Owner: gofraud
+-- Name: client_insert_safe(character varying); Type: FUNCTION; Schema: public; Owner: me
 --
 
 CREATE FUNCTION client_insert_safe(_name character varying) RETURNS TABLE(client_id integer)
@@ -44,10 +44,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.client_insert_safe(_name character varying) OWNER TO gofraud;
+ALTER FUNCTION public.client_insert_safe(_name character varying) OWNER TO me;
 
 --
--- Name: client_insert_safe_array(text); Type: FUNCTION; Schema: public; Owner: gofraud
+-- Name: client_insert_safe_array(text); Type: FUNCTION; Schema: public; Owner: me
 --
 
 CREATE FUNCTION client_insert_safe_array(text) RETURNS void
@@ -67,10 +67,10 @@ END;
 $_$;
 
 
-ALTER FUNCTION public.client_insert_safe_array(text) OWNER TO gofraud;
+ALTER FUNCTION public.client_insert_safe_array(text) OWNER TO me;
 
 --
--- Name: create_comment(integer, text); Type: FUNCTION; Schema: public; Owner: gofraud
+-- Name: create_comment(integer, text); Type: FUNCTION; Schema: public; Owner: me
 --
 
 CREATE FUNCTION create_comment(integer, text) RETURNS void
@@ -83,10 +83,10 @@ END;
 $_$;
 
 
-ALTER FUNCTION public.create_comment(integer, text) OWNER TO gofraud;
+ALTER FUNCTION public.create_comment(integer, text) OWNER TO me;
 
 --
--- Name: create_task(character varying, text); Type: FUNCTION; Schema: public; Owner: gofraud
+-- Name: create_task(character varying, text); Type: FUNCTION; Schema: public; Owner: me
 --
 
 CREATE FUNCTION create_task(client character varying, task text) RETURNS boolean
@@ -101,10 +101,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.create_task(client character varying, task text) OWNER TO gofraud;
+ALTER FUNCTION public.create_task(client character varying, task text) OWNER TO me;
 
 --
--- Name: insert_summary(character varying, integer, integer, interval, double precision, double precision, timestamp without time zone); Type: FUNCTION; Schema: public; Owner: gofraud
+-- Name: insert_summary(character varying, integer, integer, interval, double precision, double precision, timestamp without time zone); Type: FUNCTION; Schema: public; Owner: me
 --
 
 CREATE FUNCTION insert_summary(_client_name character varying, _calls_long_last integer, _calls_last integer, _duration_last interval, _acd_last double precision, _asr_last double precision, _last_update timestamp without time zone) RETURNS void
@@ -125,14 +125,14 @@ CREATE FUNCTION insert_summary(_client_name character varying, _calls_long_last 
 $$;
 
 
-ALTER FUNCTION public.insert_summary(_client_name character varying, _calls_long_last integer, _calls_last integer, _duration_last interval, _acd_last double precision, _asr_last double precision, _last_update timestamp without time zone) OWNER TO gofraud;
+ALTER FUNCTION public.insert_summary(_client_name character varying, _calls_long_last integer, _calls_last integer, _duration_last interval, _acd_last double precision, _asr_last double precision, _last_update timestamp without time zone) OWNER TO me;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: accounts; Type: TABLE; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: accounts; Type: TABLE; Schema: public; Owner: me; Tablespace: 
 --
 
 CREATE TABLE accounts (
@@ -142,10 +142,10 @@ CREATE TABLE accounts (
 );
 
 
-ALTER TABLE public.accounts OWNER TO gofraud;
+ALTER TABLE public.accounts OWNER TO me;
 
 --
--- Name: accounts_id_seq; Type: SEQUENCE; Schema: public; Owner: gofraud
+-- Name: accounts_id_seq; Type: SEQUENCE; Schema: public; Owner: me
 --
 
 CREATE SEQUENCE accounts_id_seq
@@ -156,17 +156,17 @@ CREATE SEQUENCE accounts_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.accounts_id_seq OWNER TO gofraud;
+ALTER TABLE public.accounts_id_seq OWNER TO me;
 
 --
--- Name: accounts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gofraud
+-- Name: accounts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
 --
 
 ALTER SEQUENCE accounts_id_seq OWNED BY accounts.id;
 
 
 --
--- Name: client; Type: TABLE; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: client; Type: TABLE; Schema: public; Owner: me; Tablespace: 
 --
 
 CREATE TABLE client (
@@ -175,10 +175,10 @@ CREATE TABLE client (
 );
 
 
-ALTER TABLE public.client OWNER TO gofraud;
+ALTER TABLE public.client OWNER TO me;
 
 --
--- Name: client_id_seq; Type: SEQUENCE; Schema: public; Owner: gofraud
+-- Name: client_id_seq; Type: SEQUENCE; Schema: public; Owner: me
 --
 
 CREATE SEQUENCE client_id_seq
@@ -189,17 +189,17 @@ CREATE SEQUENCE client_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.client_id_seq OWNER TO gofraud;
+ALTER TABLE public.client_id_seq OWNER TO me;
 
 --
--- Name: client_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gofraud
+-- Name: client_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
 --
 
 ALTER SEQUENCE client_id_seq OWNED BY client.id;
 
 
 --
--- Name: client_summary; Type: TABLE; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: client_summary; Type: TABLE; Schema: public; Owner: me; Tablespace: 
 --
 
 CREATE TABLE client_summary (
@@ -214,10 +214,10 @@ CREATE TABLE client_summary (
 );
 
 
-ALTER TABLE public.client_summary OWNER TO gofraud;
+ALTER TABLE public.client_summary OWNER TO me;
 
 --
--- Name: client_summary_id_seq; Type: SEQUENCE; Schema: public; Owner: gofraud
+-- Name: client_summary_id_seq; Type: SEQUENCE; Schema: public; Owner: me
 --
 
 CREATE SEQUENCE client_summary_id_seq
@@ -228,17 +228,17 @@ CREATE SEQUENCE client_summary_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.client_summary_id_seq OWNER TO gofraud;
+ALTER TABLE public.client_summary_id_seq OWNER TO me;
 
 --
--- Name: client_summary_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gofraud
+-- Name: client_summary_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
 --
 
 ALTER SEQUENCE client_summary_id_seq OWNED BY client_summary.id;
 
 
 --
--- Name: issue; Type: TABLE; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: issue; Type: TABLE; Schema: public; Owner: me; Tablespace: 
 --
 
 CREATE TABLE issue (
@@ -251,10 +251,10 @@ CREATE TABLE issue (
 );
 
 
-ALTER TABLE public.issue OWNER TO gofraud;
+ALTER TABLE public.issue OWNER TO me;
 
 --
--- Name: issue_comments; Type: TABLE; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: issue_comments; Type: TABLE; Schema: public; Owner: me; Tablespace: 
 --
 
 CREATE TABLE issue_comments (
@@ -266,10 +266,10 @@ CREATE TABLE issue_comments (
 );
 
 
-ALTER TABLE public.issue_comments OWNER TO gofraud;
+ALTER TABLE public.issue_comments OWNER TO me;
 
 --
--- Name: issue_comments_id_seq; Type: SEQUENCE; Schema: public; Owner: gofraud
+-- Name: issue_comments_id_seq; Type: SEQUENCE; Schema: public; Owner: me
 --
 
 CREATE SEQUENCE issue_comments_id_seq
@@ -280,17 +280,17 @@ CREATE SEQUENCE issue_comments_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.issue_comments_id_seq OWNER TO gofraud;
+ALTER TABLE public.issue_comments_id_seq OWNER TO me;
 
 --
--- Name: issue_comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gofraud
+-- Name: issue_comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
 --
 
 ALTER SEQUENCE issue_comments_id_seq OWNED BY issue_comments.id;
 
 
 --
--- Name: issue_id_seq; Type: SEQUENCE; Schema: public; Owner: gofraud
+-- Name: issue_id_seq; Type: SEQUENCE; Schema: public; Owner: me
 --
 
 CREATE SEQUENCE issue_id_seq
@@ -301,17 +301,17 @@ CREATE SEQUENCE issue_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.issue_id_seq OWNER TO gofraud;
+ALTER TABLE public.issue_id_seq OWNER TO me;
 
 --
--- Name: issue_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gofraud
+-- Name: issue_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
 --
 
 ALTER SEQUENCE issue_id_seq OWNED BY issue.id;
 
 
 --
--- Name: table_name_id_seq; Type: SEQUENCE; Schema: public; Owner: gofraud
+-- Name: table_name_id_seq; Type: SEQUENCE; Schema: public; Owner: me
 --
 
 CREATE SEQUENCE table_name_id_seq
@@ -322,73 +322,73 @@ CREATE SEQUENCE table_name_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.table_name_id_seq OWNER TO gofraud;
+ALTER TABLE public.table_name_id_seq OWNER TO me;
 
 --
--- Name: table_name_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gofraud
+-- Name: table_name_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
 --
 
 ALTER SEQUENCE table_name_id_seq OWNED BY issue.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: gofraud
+-- Name: id; Type: DEFAULT; Schema: public; Owner: me
 --
 
 ALTER TABLE ONLY accounts ALTER COLUMN id SET DEFAULT nextval('accounts_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: gofraud
+-- Name: id; Type: DEFAULT; Schema: public; Owner: me
 --
 
 ALTER TABLE ONLY client ALTER COLUMN id SET DEFAULT nextval('client_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: gofraud
+-- Name: id; Type: DEFAULT; Schema: public; Owner: me
 --
 
 ALTER TABLE ONLY client_summary ALTER COLUMN id SET DEFAULT nextval('client_summary_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: gofraud
+-- Name: id; Type: DEFAULT; Schema: public; Owner: me
 --
 
 ALTER TABLE ONLY issue ALTER COLUMN id SET DEFAULT nextval('issue_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: gofraud
+-- Name: id; Type: DEFAULT; Schema: public; Owner: me
 --
 
 ALTER TABLE ONLY issue_comments ALTER COLUMN id SET DEFAULT nextval('issue_comments_id_seq'::regclass);
 
 
 --
--- Name: issue_comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gofraud
+-- Name: issue_comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: me
 --
 
 SELECT pg_catalog.setval('issue_comments_id_seq', 4, true);
 
 
 --
--- Name: issue_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gofraud
+-- Name: issue_id_seq; Type: SEQUENCE SET; Schema: public; Owner: me
 --
 
 SELECT pg_catalog.setval('issue_id_seq', 39, true);
 
 
 --
--- Name: table_name_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gofraud
+-- Name: table_name_id_seq; Type: SEQUENCE SET; Schema: public; Owner: me
 --
 
 SELECT pg_catalog.setval('table_name_id_seq', 1, false);
 
 
 --
--- Name: accounts_id_pk; Type: CONSTRAINT; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: accounts_id_pk; Type: CONSTRAINT; Schema: public; Owner: me; Tablespace: 
 --
 
 ALTER TABLE ONLY accounts
@@ -396,7 +396,7 @@ ALTER TABLE ONLY accounts
 
 
 --
--- Name: client_pkey; Type: CONSTRAINT; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: client_pkey; Type: CONSTRAINT; Schema: public; Owner: me; Tablespace: 
 --
 
 ALTER TABLE ONLY client
@@ -404,7 +404,7 @@ ALTER TABLE ONLY client
 
 
 --
--- Name: client_summary_pkey; Type: CONSTRAINT; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: client_summary_pkey; Type: CONSTRAINT; Schema: public; Owner: me; Tablespace: 
 --
 
 ALTER TABLE ONLY client_summary
@@ -412,7 +412,7 @@ ALTER TABLE ONLY client_summary
 
 
 --
--- Name: issue_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: issue_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: me; Tablespace: 
 --
 
 ALTER TABLE ONLY issue_comments
@@ -420,7 +420,7 @@ ALTER TABLE ONLY issue_comments
 
 
 --
--- Name: table_name_pkey; Type: CONSTRAINT; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: table_name_pkey; Type: CONSTRAINT; Schema: public; Owner: me; Tablespace: 
 --
 
 ALTER TABLE ONLY issue
@@ -428,56 +428,56 @@ ALTER TABLE ONLY issue
 
 
 --
--- Name: accounts_id_uindex; Type: INDEX; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: accounts_id_uindex; Type: INDEX; Schema: public; Owner: me; Tablespace: 
 --
 
 CREATE UNIQUE INDEX accounts_id_uindex ON accounts USING btree (id);
 
 
 --
--- Name: client_id_uindex; Type: INDEX; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: client_id_uindex; Type: INDEX; Schema: public; Owner: me; Tablespace: 
 --
 
 CREATE UNIQUE INDEX client_id_uindex ON client USING btree (id);
 
 
 --
--- Name: client_name_uindex; Type: INDEX; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: client_name_uindex; Type: INDEX; Schema: public; Owner: me; Tablespace: 
 --
 
 CREATE UNIQUE INDEX client_name_uindex ON client USING btree (name);
 
 
 --
--- Name: client_summary_id_uindex; Type: INDEX; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: client_summary_id_uindex; Type: INDEX; Schema: public; Owner: me; Tablespace: 
 --
 
 CREATE UNIQUE INDEX client_summary_id_uindex ON client_summary USING btree (id);
 
 
 --
--- Name: client_summary_last_update_index; Type: INDEX; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: client_summary_last_update_index; Type: INDEX; Schema: public; Owner: me; Tablespace: 
 --
 
 CREATE INDEX client_summary_last_update_index ON client_summary USING btree (last_update);
 
 
 --
--- Name: issue_comments_id_uindex; Type: INDEX; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: issue_comments_id_uindex; Type: INDEX; Schema: public; Owner: me; Tablespace: 
 --
 
 CREATE UNIQUE INDEX issue_comments_id_uindex ON issue_comments USING btree (id);
 
 
 --
--- Name: table_name_id_uindex; Type: INDEX; Schema: public; Owner: gofraud; Tablespace: 
+-- Name: table_name_id_uindex; Type: INDEX; Schema: public; Owner: me; Tablespace: 
 --
 
 CREATE UNIQUE INDEX table_name_id_uindex ON issue USING btree (id);
 
 
 --
--- Name: client_id; Type: FK CONSTRAINT; Schema: public; Owner: gofraud
+-- Name: client_id; Type: FK CONSTRAINT; Schema: public; Owner: me
 --
 
 ALTER TABLE ONLY issue
@@ -485,7 +485,7 @@ ALTER TABLE ONLY issue
 
 
 --
--- Name: client_id; Type: FK CONSTRAINT; Schema: public; Owner: gofraud
+-- Name: client_id; Type: FK CONSTRAINT; Schema: public; Owner: me
 --
 
 ALTER TABLE ONLY client_summary
@@ -493,7 +493,7 @@ ALTER TABLE ONLY client_summary
 
 
 --
--- Name: issue_id; Type: FK CONSTRAINT; Schema: public; Owner: gofraud
+-- Name: issue_id; Type: FK CONSTRAINT; Schema: public; Owner: me
 --
 
 ALTER TABLE ONLY issue_comments
